@@ -14,7 +14,7 @@ public class Main  {
         double b=1.1;
         double c=a-b;
         System.out.println( c);*/
-        Window window=new Window("Chess",640,640);
+        Window window=new Window("Chess",620,640);
         window.addLayer(new LayerPiece(0,0,"rookb", new Tile(0,0)));
         window.addLayer(new LayerPiece(80,0,"horseb",new Tile(1,0)));
         window.addLayer(new LayerPiece(160,0,"bishopb",new Tile(2,0)));
