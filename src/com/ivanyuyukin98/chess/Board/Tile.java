@@ -33,6 +33,12 @@ public class Tile {
 
     @Override
     public boolean equals(Object obj) {
-        return obj.hashCode()==this.hashCode();
+        if(this==obj) return true;
+        if(obj==null||obj.getClass()!=this.getClass()){
+            return false;
+        }
+        Tile tile=(Tile) obj;
+        if(this.x==tile.x&&this.y==tile.y) return true;
+        return false;
     }
 }

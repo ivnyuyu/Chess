@@ -20,6 +20,7 @@ public class King extends Piece {
     @Override
     public boolean isProtectedTile(Move move){
         Board board=Board.getBoard();
+
         if(!(move.diffHorizontal()-move.diffVertical()<2)) return false;
         Map<Tile, Piece> pieceMap=board.getPieceMap();
         for(Map.Entry<Tile, Piece> entry: pieceMap.entrySet()){

@@ -1,6 +1,7 @@
 package com.ivanyuyukin98.chess.ChessPiece;
 
 
+import com.ivanyuyukin98.chess.Board.Board;
 import com.ivanyuyukin98.chess.Board.Move;
 import com.ivanyuyukin98.chess.Board.Tile;
 
@@ -13,7 +14,8 @@ public class Horse extends Piece {
     public boolean isProtectedTile(Move move){
         int[] xM={-2,-2,-1,-1,1,1,2,2};
         int[] yM={1,-1,2,-2,2,-2,1,-1};
-        //Board board=Board.getBoard();
+        Board board=Board.getBoard();
+        if( board.getPieceMap().get(move.getFirstTile())==null) return false;
         Tile fTile=move.getFirstTile();
         Tile destinationTile=move.getDestinationTile();
         for(int i=0; i<xM.length;i++){

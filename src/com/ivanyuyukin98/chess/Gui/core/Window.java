@@ -1,13 +1,12 @@
 package com.ivanyuyukin98.chess.Gui.core;
 
-
-
+import com.ivanyuyukin98.chess.Board.Tile;
 import com.ivanyuyukin98.chess.Gui.Events.Event;
 import com.ivanyuyukin98.chess.Gui.Events.types.MouseMotionEvent;
 import com.ivanyuyukin98.chess.Gui.Events.types.MousePressedEvent;
 import com.ivanyuyukin98.chess.Gui.Events.types.MouseReleasedEvent;
-import com.ivanyuyukin98.chess.Gui.Layers.Layer;
-import com.ivanyuyukin98.chess.Gui.SandBox.Example;
+import com.ivanyuyukin98.chess.Gui.SandBox.LayerPiece;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -18,9 +17,15 @@ import java.util.ArrayList;
 @SuppressWarnings("serial")
 public class Window extends Canvas {
     private BufferStrategy bs;
+    private ArrayList<Integer> ss;
     private Graphics g;
     private JFrame frame;
-    private static ArrayList<Layer> layerList=new ArrayList<>();
+    private static ArrayList<LayerPiece> pieceLayer=new ArrayList<LayerPiece>();
+
+    public static ArrayList<LayerPiece> getPieceLayer() {
+        return pieceLayer;
+    }
+
     public Window(String name, int width, int height){
         setPreferredSize(new Dimension(width,height));
         init(name);
@@ -79,39 +84,32 @@ public class Window extends Canvas {
         g.dispose();
         bs.show();
         try{
-            Thread.sleep(1);
+            Thread.sleep(10);
         }catch (InterruptedException e){
         }
         EventQueue.invokeLater(()->render());
 
     }
     private void onRender(Graphics g){
-        for(int i=0;i<layerList.size();i++){
-            layerList.get(i).onRender(g);
+        for(int i=0;i<pieceLayer.size();i++){
+            pieceLayer.get(i).onRender(g);
         }
     }
     private void onEvent(Event event){
-        for(int i=layerList.size()-1;i>=0;i--){
-            layerList.get(i).onEvent(event);
+        for(int i=pieceLayer.size()-1;i>=0;i--){
+            pieceLayer.get(i).onEvent(event);
         }
+    }
+    public static void addLayer(LayerPiece layer){
+        pieceLayer.add(layer);
+    }
+    public static void deleteLayer(Tile tile){
+        for(int i=0;i<pieceLayer.size();i++){
+            if(pieceLayer.get(i).getTile().equals(tile)){
+                pieceLayer.remove(pieceLayer.get(i));
 
-    }
-    public static void addLayer(Layer layer){
-        layerList.add(layer);
-
-    }
-    public static void removeLayer(Example example){
-        layerList.remove(example);
-    }
-    public static void swap(Layer layer){
-        if(layerList.indexOf(layer)==layerList.size()-1) return;
-        layerList.set(layerList.size()-1,layer);
-
-    }
-    public static void showArr(){
-        for(int i=0;i<layerList.size();i++){
-            System.out.println(layerList.get(i));
+            }
         }
-
     }
+
 }

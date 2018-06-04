@@ -1,5 +1,7 @@
 package com.ivanyuyukin98.chess.Board;
 
+import java.util.Objects;
+
 /**
  * Created by Ivan on 02.02.2018.
  */
@@ -149,5 +151,18 @@ public class Move {
         return Math.abs(firstTile.getX()-destinationTile.getX());
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Move move = (Move) o;
+        return Objects.equals(firstTile, move.firstTile) &&
+                Objects.equals(destinationTile, move.destinationTile);
+    }
 
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(firstTile, destinationTile);
+    }
 }
