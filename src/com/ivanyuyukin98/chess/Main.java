@@ -2,6 +2,7 @@ package com.ivanyuyukin98.chess;
 
 
 import com.ivanyuyukin98.chess.Board.Tile;
+import com.ivanyuyukin98.chess.Display.ConsoleDisplay;
 import com.ivanyuyukin98.chess.Gui.SandBox.LayerPiece;
 import com.ivanyuyukin98.chess.Gui.core.Window;
 
@@ -51,5 +52,16 @@ public class Main  {
         window.addLayer(new LayerPiece(480,480,"pawnw",new Tile(6,6)));
         window.addLayer(new LayerPiece(560,480,"pawnw",new Tile(7,6)));
 
+        /*while(true){
+            ConsoleDisplay cd=new ConsoleDisplay();
+            try{
+                Thread.sleep(4000);
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }
+            cd.showBoard();
+        }*/
+
     }
+
 }

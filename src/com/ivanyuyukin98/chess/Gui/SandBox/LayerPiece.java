@@ -8,6 +8,7 @@ import com.ivanyuyukin98.chess.Gui.Events.types.MousePressedEvent;
 import com.ivanyuyukin98.chess.Gui.Events.types.MouseReleasedEvent;
 import com.ivanyuyukin98.chess.Gui.Layers.Layer;
 import com.ivanyuyukin98.chess.Gui.core.ConvertorPxinCoordinate;
+import com.ivanyuyukin98.chess.controller.ChessMove;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -24,13 +25,15 @@ public class LayerPiece extends Layer {
     private Tile tile;
     private boolean dragging=false;
     private int px,py;
-    private int realX=x;
-    private int realY=y;
+    private int realX;
+    private int realY;
     private final String filename;
     public LayerPiece(int x, int y, String name, Tile tile) throws IOException {
         this.x=x;
         this.y=y;
         this.tile=tile;
+        realX=x;
+        realY=y;
         filename=typeName(name);
         image = ImageIO.read(new File(filename));
     }
@@ -108,20 +111,29 @@ public class LayerPiece extends Layer {
             x=realX;
             y=realY;
         }
-        if(contain(event.getX(),event.getY())) {
-            for (int i = 0; i < sizeScreen; i += sizeTile) {
-                for (int j = 0; j < sizeScreen; j += sizeTile) {
-                    if (i < event.getX() && i + sizeTile > event.getX() && j < event.getY() && j + sizeTile > event.getY()) {
-                        x = i;
-                        y = j;
-                        realX = i;
-                        realY = j;
+
+        if(dragging){
+            ConvertorPxinCoordinate.convert(firstX,firstY,event.getX(),event.getY());
+            int arr[]=ConvertorPxinCoordinate.getArr();
+            ChessMove cm= new ChessMove();
+            if(cm.checkMove(arr)){
+                tile=new Tile(arr[2],arr[3]);
+                if(contain(event.getX(),event.getY())) {
+                    for (int i = 0; i < sizeScreen; i += sizeTile) {
+                        for (int j = 0; j < sizeScreen; j += sizeTile) {
+                            if (i < event.getX() && i + sizeTile > event.getX() && j < event.getY() && j + sizeTile > event.getY()) {
+                                x = i;
+                                y = j;
+                                realX = i;
+                                realY = j;
+                            }
+                        }
                     }
                 }
+            }else{
+                x=realX;
+                y=realY;
             }
-        }
-        if(contain(event.getX(),event.getY())){
-            ConvertorPxinCoordinate.convert(firstX,firstY,event.getX(),event.getY(), this);
         }
         dragging=false;
         return false;
