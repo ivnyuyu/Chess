@@ -36,6 +36,7 @@ public class Horse extends Piece {
     }
     @Override
     public boolean checkMove(Move move){
+        if(!checkMoveQueue()) return false;
         if(move.isColorSame()) return false;
         if (isProtectedTile(move)) return true;
         return false;

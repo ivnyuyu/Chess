@@ -17,6 +17,7 @@ public class Queen extends Piece {
     }
     @Override
     public boolean isProtectedTile(Move move){
+        if(move.diffHorizontal()==0&&move.diffVertical()==0) return false;
         if (move.isDiagonal())
             if (move.isValidPathDiagonal()) return true;
         if (move.isVertical()||move.isHorizontal())
@@ -25,6 +26,7 @@ public class Queen extends Piece {
     }
     @Override
     public  boolean checkMove(Move move){
+        if(!checkMoveQueue()) return false;
         if (move.isColorSame()) return false;
         if(isProtectedTile(move)) return true;
         System.out.println("here");

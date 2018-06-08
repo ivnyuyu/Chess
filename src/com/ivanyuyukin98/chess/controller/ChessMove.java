@@ -14,14 +14,11 @@ public class ChessMove {
         int lastY=arr[3];
         Board board=Board.getBoard();
         Move move=new Move(new Tile(firstY,firstX),new Tile(lastY,lastX));
-        //if(!move.equals(lastMove)) {
             if (board.getPieceMap().get(new Tile(firstY, firstX)).checkMove(move)) {
                 Window.deleteLayer(new Tile(lastX, lastY));
                 board.getPieceMap().get(new Tile(firstY, firstX)).makeMove(move);
-          //      lastMove = move;
                 return true;
             }
-        //}
         return false;
     }
 }

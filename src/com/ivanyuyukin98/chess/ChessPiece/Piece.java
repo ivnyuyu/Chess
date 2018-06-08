@@ -1,7 +1,10 @@
 package com.ivanyuyukin98.chess.ChessPiece;
 
 import com.ivanyuyukin98.chess.Board.Board;
+import com.ivanyuyukin98.chess.Board.ColorQueue;
 import com.ivanyuyukin98.chess.Board.Move;
+
+import java.awt.*;
 
 public abstract class Piece {
     public enum ColorPiece{W, B}
@@ -19,6 +22,11 @@ public abstract class Piece {
         Board board=Board.getBoard();
         board.getPieceMap().put(move.getDestinationTile(),this);
         board.getPieceMap().remove(move.getFirstTile());
-        System.out.println("all right");
+        ColorQueue.setColorQueue(getColor());
+
+    }
+    public boolean checkMoveQueue(){
+        if(getColor().equals(ColorQueue.getColorQueue())) return true;
+        return false;
     }
 }
