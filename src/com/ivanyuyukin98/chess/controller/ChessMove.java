@@ -15,9 +15,11 @@ public class ChessMove {
         Board board=Board.getBoard();
         Move move=new Move(new Tile(firstY,firstX),new Tile(lastY,lastX));
             if (board.getPieceMap().get(new Tile(firstY, firstX)).checkMove(move)) {
-                Window.deleteLayer(new Tile(lastX, lastY));
-                board.getPieceMap().get(new Tile(firstY, firstX)).makeMove(move);
-                return true;
+                if(board.getPieceMap().get(new Tile(firstY, firstX)).makeMove(move)){
+                    Window.deleteLayer(new Tile(lastX, lastY));
+                    return true;
+                }
+
             }
         return false;
     }

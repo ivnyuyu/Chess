@@ -1,6 +1,7 @@
 package com.ivanyuyukin98.chess.ChessPiece;
 
 import com.ivanyuyukin98.chess.Board.Board;
+import com.ivanyuyukin98.chess.Board.LocationKing;
 import com.ivanyuyukin98.chess.Board.Move;
 import com.ivanyuyukin98.chess.Board.Tile;
 
@@ -10,14 +11,15 @@ import java.util.Map;
  * Created by Ivan on 02.02.2018.
  */
 public class King extends Piece {
-    public static Tile positionKing;
+
     public King(ColorPiece color){
         super(color);
         if(color==ColorPiece.W){
-            positionKing=new Tile(7,4);
+            LocationKing.setLocationWKing(new Tile(7,4));
         }else{
-            positionKing=new Tile(0,4);
+            LocationKing.setLocationBKing(new Tile(0,4));
         }
+
 
     }
     private String consoleName="K";
@@ -27,6 +29,16 @@ public class King extends Piece {
 
     @Override
     public boolean isProtectedTile(Move move) {
+        /*if(move.diffHorizontal()==0&&move.diffVertical()==0) return false;
+        if(move.isDiagonal()){
+            if(move.diffHorizontal()!=1) return false;
+            if(move.diffVertical()!=1) return false;
+        }
+        if(move.isVertical()||move.isHorizontal()){
+            System.out.println("diff=");
+            System.out.println(move.diffVertical()-move.diffHorizontal());
+            if(Math.abs(move.diffVertical()-move.diffHorizontal())!=1) return false;
+        }*/
         return false;
     }
 
@@ -52,6 +64,11 @@ public class King extends Piece {
                 System.out.println(pieceMap.get(fTile).getConsoleName());
                 return false;
             }
+        }
+        if(getColor()==ColorPiece.W){
+            LocationKing.setLocationWKing(move.getDestinationTile());
+        }else{
+            LocationKing.setLocationBKing(move.getDestinationTile());
         }
         return true;
     }
