@@ -105,7 +105,7 @@ public class Window extends Canvas {
         g.dispose();
         bs.show();
         try{
-            Thread.sleep(10);
+            Thread.sleep(1);
         }catch (InterruptedException e){
         }
         EventQueue.invokeLater(()->render());

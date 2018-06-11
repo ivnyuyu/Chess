@@ -55,9 +55,9 @@ public abstract class Piece {
         if(!isGood){
             board.getPieceMap().put(move.getFirstTile(),this);
             if(p!=null){
-                board.getPieceMap().put(move.getDestinationTile(),p);
+                board.getPieceMap().put(move.getFirstTile(),p);
             }else{
-                board.getPieceMap().remove(move.getDestinationTile());
+                board.getPieceMap().remove(move.getFirstTile());
             }
             board.getPieceMap().put(move.getDestinationTile(),this);
 
