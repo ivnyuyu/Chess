@@ -11,12 +11,13 @@ public class Queen extends Piece {
     public Queen(ColorPiece color){
         super(color);
     }
-    private String consoleName="Q";
+    private String consoleName="Queen";
     public String getConsoleName(){
         return consoleName;
     }
     @Override
     public boolean isProtectedTile(Move move){
+
         if(move.diffHorizontal()==0&&move.diffVertical()==0) return false;
         if (move.isDiagonal())
             if (move.isValidPathDiagonal()) return true;

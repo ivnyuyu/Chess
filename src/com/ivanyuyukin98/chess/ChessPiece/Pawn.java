@@ -11,7 +11,7 @@ public class Pawn extends Piece {
         super(color);
         firstMove=2;
     }
-    private String consoleName="P";
+    private String consoleName="Pawn";
     public String getConsoleName(){
         return consoleName;
     }

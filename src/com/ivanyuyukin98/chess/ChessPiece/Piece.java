@@ -27,22 +27,25 @@ public abstract class Piece {
         Board board=Board.getBoard();
         Boolean isGood=true;
         Piece p=null;
+        Piece d=null;
+        if(board.getPieceMap().get(move.getFirstTile())!=null){
+            p=board.getPieceMap().get(move.getFirstTile());
+        }
         if(board.getPieceMap().get(move.getDestinationTile())!=null){
-            p=board.getPieceMap().get(move.getDestinationTile());
+            d=board.getPieceMap().get(move.getDestinationTile());
         }
         board.getPieceMap().put(move.getDestinationTile(),this);
         board.getPieceMap().remove(move.getFirstTile());
 
         Map<Tile, Piece> pieceMap=board.getPieceMap();
         Tile dTile;
+        if(ColorQueue.getColorQueue()==ColorPiece.W){
+            dTile=LocationKing.getLocationWKing();
+        }else{
+            dTile=LocationKing.getLocationBKing();
+        }
         for(Map.Entry<Tile, Piece> entry: pieceMap.entrySet()){
             Tile fTile=entry.getKey();
-            if(ColorQueue.getColorQueue()==ColorPiece.W){
-                dTile=LocationKing.getLocationWKing();
-            }else{
-                dTile=LocationKing.getLocationBKing();
-            }
-
             Move move2=new Move(fTile,dTile);
             if(pieceMap.get(fTile).getColor()==pieceMap.get(dTile).getColor()) continue;
             if(pieceMap.get(fTile).isProtectedTile(move2)) {
@@ -53,13 +56,17 @@ public abstract class Piece {
             }
         }
         if(!isGood){
-            board.getPieceMap().put(move.getFirstTile(),this);
             if(p!=null){
-                board.getPieceMap().put(move.getFirstTile(),p);
-            }else{
                 board.getPieceMap().remove(move.getFirstTile());
+                board.getPieceMap().put(move.getFirstTile(), p);
             }
-            board.getPieceMap().put(move.getDestinationTile(),this);
+            if(d!=null){
+                board.getPieceMap().remove(move.getDestinationTile());
+                board.getPieceMap().put(move.getDestinationTile(),d);
+            }else{
+                board.getPieceMap().remove(move.getDestinationTile());
+            }
+            //board.getPieceMap().put(move.getDestinationTile(),this);
 
             return false;
         }
