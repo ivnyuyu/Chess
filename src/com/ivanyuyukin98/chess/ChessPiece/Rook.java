@@ -9,7 +9,7 @@ public class Rook extends Piece {
     public Rook(ColorPiece color){
         super(color);
     }
-    private String consoleName="Rook";
+    private String consoleName="R";
     public String getConsoleName(){
         return consoleName;
     }

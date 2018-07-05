@@ -41,34 +41,34 @@ public class LayerPiece extends Layer {
     private String typeName(String name) {
         switch (name){
             case "pawnb":
-                return "D:\\Chess\\img\\pawnb.jpg";
+                return "D:\\Chess\\img\\pawnb.png";
             case "pawnw":
-                return "D:\\Chess\\img\\pawnw.jpg";
+                return "D:\\Chess\\img\\pawnw.png";
 
             case "rookb":
-                return "D:\\Chess\\img\\rookb.jpg";
+                return "D:\\Chess\\img\\rookb.png";
             case "rookw":
-                return "D:\\Chess\\img\\rookw.jpg";
+                return "D:\\Chess\\img\\rookw.png";
 
             case "horseb":
-                return "D:\\Chess\\img\\horseb.jpg";
+                return "D:\\Chess\\img\\horseb.png";
             case "horsew":
-                return "D:\\Chess\\img\\horsew.jpg";
+                return "D:\\Chess\\img\\horsew.png";
 
             case "bishopb":
-                return "D:\\Chess\\img\\bishopb.jpg";
+                return "D:\\Chess\\img\\bishopb.png";
             case "bishopw":
-                return "D:\\Chess\\img\\bishopw.jpg";
+                return "D:\\Chess\\img\\bishopw.png";
 
             case "queenb":
-                return "D:\\Chess\\img\\queenb.jpg";
+                return "D:\\Chess\\img\\queenb.png";
             case "queenw":
-                return "D:\\Chess\\img\\queenw.jpg";
+                return "D:\\Chess\\img\\queenw.png";
 
             case "kingb":
-                return "D:\\Chess\\img\\kingb.jpg";
+                return "D:\\Chess\\img\\kingb.png";
             case "kingw":
-                return "D:\\Chess\\img\\kingw.jpg";
+                return "D:\\Chess\\img\\kingw.png";
                 default:
                     System.out.println("err");
 
@@ -101,7 +101,7 @@ public class LayerPiece extends Layer {
             firstX=event.getX();
             firstY=event.getY();
             dragging=true;
-            System.out.println("Piece preased!");
+
         }
         return dragging;
     }

@@ -1,6 +1,7 @@
 package com.ivanyuyukin98.chess;
 
 import com.ivanyuyukin98.chess.Board.Tile;
+import com.ivanyuyukin98.chess.Display.ConsoleDisplay;
 import com.ivanyuyukin98.chess.Gui.SandBox.LayerPiece;
 import com.ivanyuyukin98.chess.Gui.core.Window;
 import java.io.*;
@@ -9,7 +10,8 @@ import java.io.*;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        Window window=new Window("Chess",625,625);
+        //625
+        Window window=new Window("Chess",900,625);
         window.addLayer(new LayerPiece(0,0,"rookb", new Tile(0,0)));
         window.addLayer(new LayerPiece(80,0,"horseb",new Tile(1,0)));
         window.addLayer(new LayerPiece(160,0,"bishopb",new Tile(2,0)));
@@ -45,6 +47,17 @@ public class Main {
         window.addLayer(new LayerPiece(400,480,"pawnw",new Tile(5,6)));
         window.addLayer(new LayerPiece(480,480,"pawnw",new Tile(6,6)));
         window.addLayer(new LayerPiece(560,480,"pawnw",new Tile(7,6)));
+
+       /* while(true){
+            ConsoleDisplay consoleDisplay=new ConsoleDisplay();
+            consoleDisplay.showBoard();
+            System.out.println("");
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }*/
 
     }
 }

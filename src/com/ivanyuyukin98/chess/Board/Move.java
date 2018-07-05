@@ -49,7 +49,6 @@ public class Move {
                 x0--;
                 y0++;
                 if(board.getPieceMap().get(new Tile(x0,y0))!=null){
-                    System.out.println(board.getPieceMap().get(new Tile(x0,y0)));
                     return false;
                 }
             }
@@ -61,7 +60,6 @@ public class Move {
                 x0++;
                 y0++;
                 if(board.getPieceMap().get(new Tile(x0,y0))!=null){
-                    System.out.println(board.getPieceMap().get(new Tile(x0,y0)));
                     return false;
                 }
             }
@@ -73,7 +71,6 @@ public class Move {
                 x0--;
                 y0--;
                 if(board.getPieceMap().get(new Tile(x0,y0))!=null){
-                    System.out.println(board.getPieceMap().get(new Tile(x0,y0)));
                     return false;
                 }
             }
@@ -85,7 +82,6 @@ public class Move {
                 x0++;
                 y0--;
                 if(board.getPieceMap().get(new Tile(x0,y0))!=null){
-                    System.out.println(board.getPieceMap().get(new Tile(x0,y0)));
                     return false;
                 }
             }
@@ -103,7 +99,6 @@ public class Move {
             while(y0!=y1){
                 y0--;
                 if(board.getPieceMap().get(new Tile(x0,y0))!=null){
-                    System.out.println(board.getPieceMap().get(new Tile(x0,y0)));
                     return false;
                 }
             }
@@ -113,7 +108,6 @@ public class Move {
             while (y0!=y1){
                 y0++;
                 if(board.getPieceMap().get(new Tile(x0,y0))!=null){
-                    System.out.println(board.getPieceMap().get(new Tile(x0,y0)));
                     return false;
                 }
 
@@ -125,7 +119,6 @@ public class Move {
             while (x0!=x1){
                 x0--;
                 if(board.getPieceMap().get(new Tile(x0,y0))!=null){
-                    System.out.println(board.getPieceMap().get(new Tile(x0,y0)));
                     return false;
                 }
             }
@@ -136,7 +129,6 @@ public class Move {
             while (x0!=x1){
                 x0++;
                 if(board.getPieceMap().get(new Tile(x0,y0))!=null){
-                    System.out.println(board.getPieceMap().get(new Tile(x0,y0)));
                     return false;
                 }
             }

@@ -24,8 +24,6 @@ public class Board {
         beginWhite();
         beginBlack();
     }
-
-
     private void beginWhite(){
         pieceMap.put(new Tile(7,0), new Rook(Piece.ColorPiece.W));
         pieceMap.put(new Tile(7,1), new Horse(Piece.ColorPiece.W));

@@ -8,7 +8,7 @@ import com.ivanyuyukin98.chess.Board.Tile;
  * Created by Ivan on 02.02.2018.
  */
 public class Bishop extends Piece {
-    private final String consoleName="Bishop";
+    private final String consoleName="B";
     public Bishop(ColorPiece color){
         super(color);
     }

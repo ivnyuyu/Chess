@@ -23,7 +23,7 @@ public class ConvertorPxinCoordinate {
                 }
             }
         }
-        System.out.println(firstX+" "+firstY+"/"+lastX+" "+lastY);
+
         arr[0]=firstX;
         arr[1]=firstY;
         arr[2]=lastX;

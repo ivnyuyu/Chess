@@ -1,6 +1,8 @@
 package com.ivanyuyukin98.chess.Gui.core;
 
+import com.ivanyuyukin98.chess.Board.ColorQueue;
 import com.ivanyuyukin98.chess.Board.Tile;
+import com.ivanyuyukin98.chess.ChessPiece.Piece;
 import com.ivanyuyukin98.chess.Gui.Events.Event;
 import com.ivanyuyukin98.chess.Gui.Events.types.MouseMotionEvent;
 import com.ivanyuyukin98.chess.Gui.Events.types.MousePressedEvent;
@@ -20,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("serial")
 public class Window extends Canvas {
     private BufferStrategy bs;
-    private ArrayList<Integer> ss;
+
     private Graphics g;
     private JFrame frame;
     private Image image;
@@ -32,7 +34,7 @@ public class Window extends Canvas {
 
     public Window(String name, int width, int height){
         try{
-            image = ImageIO.read(new File("D:\\Chess\\img\\chessboard.jpg"));
+            image = ImageIO.read(new File("D:\\Chess\\img\\chessboard.png"));
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -81,33 +83,33 @@ public class Window extends Canvas {
         }
         bs=getBufferStrategy();
         g=bs.getDrawGraphics();
-        g.setColor(Color.WHITE);
-        g.drawImage(image,0,0,null);
-        /*g.setColor(Color.BLACK);
-        for(int i=0; i<getWidth();i+=80){
-            g.drawLine(i,0,i,getHeight());
+        g.setColor(Color.BLUE);
+        g.fillRect(0,0,1000,1000);
+        if(CheckListener.getCheck()){
+            g.setColor(Color.RED);
+            System.out.println("CHES");
+            g.fillRect(0,0,1000,1000);
         }
-        for(int i=0; i<getHeight();i+=80){
-            g.drawLine(0,i,getHeight(),i);
-        }*/
+        if(ColorQueue.getColorQueue()==Piece.ColorPiece.W) {
 
-        /*int z=2;
-        g.setColor(Color.GRAY);
-        for(int i=1;i<=8;i++){
-            for(int j=1;j<=8;j++){
-                if(z%2==0)
+            g.setColor(Color.WHITE);
+            g.fillRect(0,500,1000,1000);
+        }else{
 
-                g.fillRect(80*j-80,80*i-80,80,80);
-                z++;
-            }
-        }*/
+            g.setColor(Color.BLACK);
+            g.fillRect(0,500,1000,1000);
+        }
+        g.drawImage(image,0,0,null);
+
         onRender(g);
+
         g.dispose();
         bs.show();
         try{
             Thread.sleep(1);
         }catch (InterruptedException e){
         }
+
         EventQueue.invokeLater(()->render());
 
     }

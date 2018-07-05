@@ -1,22 +1,19 @@
 package com.ivanyuyukin98.chess.ChessPiece;
 
 import com.ivanyuyukin98.chess.Board.*;
+import com.ivanyuyukin98.chess.Gui.core.CheckListener;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Map;
 
 public abstract class Piece {
     public enum ColorPiece{W, B}
-    Tile kingPosition;
     private ColorPiece color;
-    public Piece(ColorPiece color){
+    public  Piece(ColorPiece color){
         this.color=color;
     }
-    public Piece(ColorPiece color, Tile kingPosition){
-        this.color=color;
-        this.kingPosition=kingPosition;
 
-    }
     abstract public String getConsoleName();
     public ColorPiece getColor(){
         return color;
@@ -36,25 +33,29 @@ public abstract class Piece {
         }
         board.getPieceMap().put(move.getDestinationTile(),this);
         board.getPieceMap().remove(move.getFirstTile());
-
         Map<Tile, Piece> pieceMap=board.getPieceMap();
         Tile dTile;
+        Tile tempCheck;
+
         if(ColorQueue.getColorQueue()==ColorPiece.W){
+            tempCheck=LocationKing.getLocationBKing();
             dTile=LocationKing.getLocationWKing();
         }else{
+            tempCheck=LocationKing.getLocationWKing();
             dTile=LocationKing.getLocationBKing();
         }
+
         for(Map.Entry<Tile, Piece> entry: pieceMap.entrySet()){
             Tile fTile=entry.getKey();
             Move move2=new Move(fTile,dTile);
             if(pieceMap.get(fTile).getColor()==pieceMap.get(dTile).getColor()) continue;
             if(pieceMap.get(fTile).isProtectedTile(move2)) {
-                board.getPieceMap().remove(move.getDestinationTile());
                 System.out.println("incorrect move!!!!");
                 isGood=false;
                 break;
             }
         }
+
         if(!isGood){
             if(p!=null){
                 board.getPieceMap().remove(move.getFirstTile());
@@ -66,11 +67,43 @@ public abstract class Piece {
             }else{
                 board.getPieceMap().remove(move.getDestinationTile());
             }
-            //board.getPieceMap().put(move.getDestinationTile(),this);
 
             return false;
         }
+        boolean isCheck=false;
+        //here condition check or checkmat or tie
+        for(Map.Entry<Tile, Piece> entry: pieceMap.entrySet()){
+            Tile fTile=entry.getKey();
+            Move move2=new Move(fTile,tempCheck);
+            if(pieceMap.get(fTile).getColor()==pieceMap.get(tempCheck).getColor()) continue;
+            if(pieceMap.get(fTile).isProtectedTile(move2)) {
+                System.out.println("Check!!!");
+                isCheck=true;
+
+                break;
+            }
+        }
+        CheckListener.setCheck(isCheck);
         ColorQueue.setColorQueue(getColor());
+        /*ArrayList<Tile> arr=new ArrayList();
+        if(isCheck){
+            ConditionStalemate conditionStalemate=new ConditionStalemate(pieceMap.get(dTile).getColor());
+            for(Map.Entry<Tile, Piece> entry: pieceMap.entrySet()){
+                Tile fTile=entry.getKey();
+                if(pieceMap.get(fTile).getColor()==pieceMap.get(dTile).getColor()) continue;
+                arr.add(fTile);
+
+
+
+
+            }
+            if(conditionStalemate.checkMoveMate(arr)){
+                System.out.println("stalemate");
+            }
+
+        }*/
+
+
         return true;
     }
     public boolean checkMoveQueue(){

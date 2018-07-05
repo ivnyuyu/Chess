@@ -9,7 +9,7 @@ import com.ivanyuyukin98.chess.Board.Tile;
  * Created by Ivan on 07.01.2018.
  */
 public class Horse extends Piece {
-    private  String consoleName="Horse";
+    private  String consoleName="H";
     @Override
     public boolean isProtectedTile(Move move){
         int[] xM={-2,-2,-1,-1,1,1,2,2};

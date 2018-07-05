@@ -19,7 +19,6 @@ public class ChessMove {
                     Window.deleteLayer(new Tile(lastX, lastY));
                     return true;
                 }
-
             }
         return false;
     }
