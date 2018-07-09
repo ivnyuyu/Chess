@@ -3,6 +3,7 @@ package com.ivanyuyukin98.chess.controller;
 import com.ivanyuyukin98.chess.Board.Board;
 import com.ivanyuyukin98.chess.Board.Move;
 import com.ivanyuyukin98.chess.Board.Tile;
+import com.ivanyuyukin98.chess.Gui.core.CheckListener;
 import com.ivanyuyukin98.chess.Gui.core.Window;
 
 public class ChessMove {

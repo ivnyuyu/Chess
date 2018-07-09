@@ -77,6 +77,7 @@ public class Window extends Canvas {
         frame.setResizable(false);
         frame.setVisible(true);
     }
+
     private void render(){
         if(bs==null){
             createBufferStrategy(3);
@@ -85,9 +86,24 @@ public class Window extends Canvas {
         g=bs.getDrawGraphics();
         g.setColor(Color.BLUE);
         g.fillRect(0,0,1000,1000);
+        /*if(CheckListener.getIsLastHorizontalForPawn()==false){
+            try{
+                Image imageRook= ImageIO.read(new File("D:\\Chess\\img\\rookw.png"));
+                Image imageHorse= ImageIO.read(new File("D:\\Chess\\img\\horsew.png"));
+                Image imageBishop= ImageIO.read(new File("D:\\Chess\\img\\bishopw.png"));
+                Image imageQueen= ImageIO.read(new File("D:\\Chess\\img\\queenw.png"));
+                g.drawImage(imageRook,700,0,null);
+                g.drawImage(imageHorse,700,80,null);
+                g.drawImage(imageBishop,700,160,null);
+                g.drawImage(imageQueen,700,240,null);
+
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+
+        }*/
         if(CheckListener.getCheck()){
             g.setColor(Color.RED);
-            System.out.println("CHES");
             g.fillRect(0,0,1000,1000);
         }
         if(ColorQueue.getColorQueue()==Piece.ColorPiece.W) {
@@ -99,8 +115,21 @@ public class Window extends Canvas {
             g.setColor(Color.BLACK);
             g.fillRect(0,500,1000,1000);
         }
-        g.drawImage(image,0,0,null);
+        /*g.drawImage(image,0,0,null);*/
+        boolean t=true;
+        int z=64;
+        g.setColor(Color.GREEN);
+        for(int i=1;i<=8;i++){
+            for(int j=1;j<=8;j++){
+                if((i+j)%2==0){
+                    g.setColor(Color.WHITE);
+                }else{
+                    g.setColor(Color.GRAY);
+                }
+                g.fillRect(j*80-80,i*80-80,80,80);
+            }
 
+        }
         onRender(g);
 
         g.dispose();

@@ -79,8 +79,7 @@ public class LayerPiece extends Layer {
     public Tile getTile() {
         return tile;
     }
-
-    private boolean contain(int xd, int yd){
+    public boolean contain(int xd, int yd){
         if((x<xd&&x+sizeTile>=xd)&&(y<yd&&y+sizeTile>=yd))
             return true;
         return false;

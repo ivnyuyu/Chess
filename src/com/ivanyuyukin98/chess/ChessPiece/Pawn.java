@@ -4,6 +4,7 @@ import com.ivanyuyukin98.chess.Board.Board;
 import com.ivanyuyukin98.chess.Board.Move;
 import com.ivanyuyukin98.chess.Board.Tile;
 import com.ivanyuyukin98.chess.Gui.SandBox.LayerPiece;
+import com.ivanyuyukin98.chess.Gui.core.CheckListener;
 import com.ivanyuyukin98.chess.Gui.core.Window;
 
 import java.io.IOException;
@@ -49,7 +50,7 @@ public class Pawn extends Piece {
                 if(move.diffHorizontal()<=firstMove){
                     if(move.getFirstTile().getX()>move.getDestinationTile().getX()){
                         if(board.getPieceMap().get(move.getDestinationTile())==null){
-                            firstMove=1;
+                            //firstMove=1;
                             isLastHorizont(move);
                             return true;
                         }
@@ -65,7 +66,7 @@ public class Pawn extends Piece {
                         if(move.getFirstTile().getX()>move.getDestinationTile().getX())
                             if(board.getPieceMap().get(move.getDestinationTile())!=null){
                                 isLastHorizont(move);
-                                firstMove=1;
+                                //firstMove=1;
                                 return true;
                             }
 
@@ -79,7 +80,7 @@ public class Pawn extends Piece {
                 if(move.diffHorizontal()<=firstMove){
                     if(move.getFirstTile().getX()<move.getDestinationTile().getX()){
                         if(board.getPieceMap().get(move.getDestinationTile())==null){
-                            firstMove=1;
+                            //firstMove=1;
                             isLastHorizont(move);
                             return true;
                         }
@@ -95,7 +96,7 @@ public class Pawn extends Piece {
                     if(move.diffVertical()==1)
                         if(move.getFirstTile().getX()<move.getDestinationTile().getX())
                              if(board.getPieceMap().get(move.getDestinationTile())!=null){
-                                firstMove=1;
+                                //firstMove=1;
                                  isLastHorizont(move);
                                  return true;
                              }
@@ -105,14 +106,23 @@ public class Pawn extends Piece {
 
         return false;
     }
+
+    @Override
+    public void spec() {
+        firstMove=1;
+    }
+
+
     private void isLastHorizont(Move move){
         if(getColor()==ColorPiece.W){
             if(move.getDestinationTile().getX()==0){
+                //CheckListener.setCheck(true);
                 Board board=Board.getBoard();
                 Window.deleteLayer(new Tile(move.getFirstTile().getY(),move.getFirstTile().getX()));
                 board.getPieceMap().put(move.getFirstTile(),new Queen(getColor()));
                 try {
                     Window.addLayer(new LayerPiece(move.getDestinationTile().getY()*80,0,"queenw",new Tile(move.getDestinationTile().getX(),move.getDestinationTile().getY())));
+                    //Window.addLayer(new LayerPiece(move.getDestinationTile().getY()*80,0,"queenw",new Tile(move.getDestinationTile().getY(),move.getDestinationTile().getX())));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -120,12 +130,14 @@ public class Pawn extends Piece {
         }
         if(getColor()==ColorPiece.B){
             if(move.getDestinationTile().getX()==7){
+               // CheckListener.setCheck(true);
 
                 Board board=Board.getBoard();
                 Window.deleteLayer(new Tile(move.getFirstTile().getY(),move.getFirstTile().getX()));
                 board.getPieceMap().put(move.getFirstTile(),new Queen(getColor()));
                 try {
                     Window.addLayer(new LayerPiece(move.getDestinationTile().getY()*80,560,"queenb",new Tile(move.getDestinationTile().getX(),move.getDestinationTile().getY())));
+                    //Window.addLayer(new LayerPiece(move.getDestinationTile().getY()*80,560,"queenb",new Tile(move.getDestinationTile().getY(),move.getDestinationTile().getX())));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

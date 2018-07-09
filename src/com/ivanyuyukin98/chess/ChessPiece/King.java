@@ -87,8 +87,12 @@ public class King extends Piece {
         }
 
         if (!isProtectedTiles(move)) return false;
-        isFirstMove=false;
+        //isFirstMove=false;
         return true;
+    }
+    @Override
+    public void spec(){
+        isFirstMove=false;
     }
     private boolean checkRoque(Move move){
         Board board=Board.getBoard();

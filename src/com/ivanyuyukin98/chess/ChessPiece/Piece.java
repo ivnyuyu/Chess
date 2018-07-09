@@ -13,7 +13,9 @@ public abstract class Piece {
     public  Piece(ColorPiece color){
         this.color=color;
     }
-
+    public void spec(){
+        //System.out.println("here");
+    }
     abstract public String getConsoleName();
     public ColorPiece getColor(){
         return color;
@@ -50,12 +52,12 @@ public abstract class Piece {
             Move move2=new Move(fTile,dTile);
             if(pieceMap.get(fTile).getColor()==pieceMap.get(dTile).getColor()) continue;
             if(pieceMap.get(fTile).isProtectedTile(move2)) {
-                System.out.println("incorrect move!!!!");
+                //System.out.println("incorrect move!!!!");
                 isGood=false;
                 break;
             }
         }
-
+        if(isGood) board.getPieceMap().get(move.getDestinationTile()).spec();
         if(!isGood){
             if(p!=null){
                 board.getPieceMap().remove(move.getFirstTile());
@@ -77,7 +79,7 @@ public abstract class Piece {
             Move move2=new Move(fTile,tempCheck);
             if(pieceMap.get(fTile).getColor()==pieceMap.get(tempCheck).getColor()) continue;
             if(pieceMap.get(fTile).isProtectedTile(move2)) {
-                System.out.println("Check!!!");
+                //System.out.println("Check!!!");
                 isCheck=true;
 
                 break;
@@ -85,23 +87,7 @@ public abstract class Piece {
         }
         CheckListener.setCheck(isCheck);
         ColorQueue.setColorQueue(getColor());
-        /*ArrayList<Tile> arr=new ArrayList();
-        if(isCheck){
-            ConditionStalemate conditionStalemate=new ConditionStalemate(pieceMap.get(dTile).getColor());
-            for(Map.Entry<Tile, Piece> entry: pieceMap.entrySet()){
-                Tile fTile=entry.getKey();
-                if(pieceMap.get(fTile).getColor()==pieceMap.get(dTile).getColor()) continue;
-                arr.add(fTile);
 
-
-
-
-            }
-            if(conditionStalemate.checkMoveMate(arr)){
-                System.out.println("stalemate");
-            }
-
-        }*/
 
 
         return true;
